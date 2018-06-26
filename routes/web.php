@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
+{
+    Route::resource('articles', 'Admin\ArticlesController');
+});
+
+Route::resource('articles', 'ArticlesController', ['only' => [
+    'index', 'show'
+]]);
