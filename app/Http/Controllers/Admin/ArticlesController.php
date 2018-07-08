@@ -8,10 +8,10 @@ use App\Article;
 
 class ArticlesController extends Controller
 {
-    public $validateRules = {
+    public $validateRules = [
         'title' => 'required',
         'body' => 'max:500'
-    };
+    ];
 
     public function index()
     {
