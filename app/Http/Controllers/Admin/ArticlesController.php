@@ -8,6 +8,11 @@ use App\Article;
 
 class ArticlesController extends Controller
 {
+    public $validateRules = {
+        'title' => 'required',
+        'body' => 'max:500'
+    };
+
     public function index()
     {
         $articles = Article::orderBy('id', 'desc')->paginate(5);
@@ -21,6 +26,7 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, $this->validateRules);
         Article::create($request->all());
         \Session::flash('flash_message', '記事を作成しました。');
         return redirect('admin/articles');
@@ -40,6 +46,7 @@ class ArticlesController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, $this->validateRules);
         $article = Article::findOrFail($id);
         $article->update($request->all());
 
