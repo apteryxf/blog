@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -10,11 +9,9 @@
                     @if (Session::has('flash_message'))
                         <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
                     @endif
-
                     <div class="mb10">
                         {!! link_to('admin/articles/create', '新規作成', ['class' => 'btn btn-primary']) !!}
                     </div>
-
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
@@ -31,17 +28,18 @@
                                 <td>{{ $article->created_at->format('Y年m月d日') }}</td>
                                 <td>
                                     {!! link_to_action('Admin\ArticlesController@show', '表示', [$article->id]) !!}
+                                    @if (Auth::check())
                                     {!! link_to_action('Admin\ArticlesController@edit', '編集', [$article->id]) !!}
                                     {!! Form::model($article,
-                                    ['url' => [
-                                        'admin/articles', $article->id],
-                                        'method' => 'delete',
-                                        'class' => 'delete-from'
-                                    ]) !!}
-                                        {!! Form::submit('削除', [
-                                            'onclick' => "return confirm('本当に削除しますか?')",
-                                            'class' => 'text-link'
-                                            ]) !!}
+                                        ['url'    => ['admin/articles', $article->id],
+                                         'method' => 'delete',
+                                         'class'  => 'delete-from'
+                                        ]) !!}
+                                    {!! Form::submit('削除', [
+                                        'onclick' => "return confirm('本当に削除しますか?')",
+                                        'class' => 'text-link'
+                                        ]) !!}
+                                    @endif
                                     {!! Form::close() !!}
                                 </td>
                             </tr>

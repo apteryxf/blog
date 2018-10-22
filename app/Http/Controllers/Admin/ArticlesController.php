@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Article;
+use Session;
 
 class ArticlesController extends Controller
 {
@@ -28,7 +29,7 @@ class ArticlesController extends Controller
     {
         $this->validate($request, $this->validateRules);
         Article::create($request->all());
-        \Session::flash('flash_message', '記事を作成しました。');
+        Session::flash('flash_message', '記事を作成しました。');
         return redirect('admin/articles');
     }
 
@@ -50,15 +51,15 @@ class ArticlesController extends Controller
         $article = Article::findOrFail($id);
         $article->update($request->all());
 
-        \Session::flash('flash_message', '記事を更新しました。');
-        return redirect('admin/articles');
+        Session::flash('flash_message', '記事を更新しました。');
+        return back();
     }
 
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
         $article->delete($id);
-        \Session::flash('flash_message', '記事を削除しました。');
-        return redirect('admin/articles');
+        Session::flash('flash_message', '記事を削除しました。');
+        return back();
     }
 }

@@ -11,17 +11,14 @@
 |                                                                            |
 */
 
-Route::get('/', 'ArticlesController@index')->name('index');
+Route::get('/', 'Admin\ArticlesController@index')->name('index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function()
-{
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('articles', 'Admin\ArticlesController');
 });
 
-Route::resource('articles', 'ArticlesController', ['only' => [
-    'index', 'show'
-]]);
+Route::resource('articles', 'ArticlesController', ['only' => ['index', 'show']]);
