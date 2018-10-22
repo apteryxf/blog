@@ -180,7 +180,13 @@ return [
         /*
          * Form Helper by laravelcollective
          */
-        Collective\Html\HtmlServiceProvider::class
+        Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * role and permission management package
+         * https://github.com/JosephSilber/bouncer
+         */
+        Silber\Bouncer\BouncerServiceProvider::class,
     ],
 
     /*
@@ -230,7 +236,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Bouncer' => Silber\Bouncer\BouncerFacade::class,
     ],
 
 ];
