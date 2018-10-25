@@ -17,7 +17,7 @@
                     @endif
                     {!! Form::model($article,
                     ['url' => [
-                        'admin/articles', $article->id],
+                        '/', $article->id],
                         'method' => 'PATCH',
                         'class' => 'form-horizontal',
                         'id' => 'article-input'

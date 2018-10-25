@@ -12,7 +12,7 @@
                     @endif
 
                     <div class="mb10">
-                        {!! link_to('admin/articles/create', '新規作成', ['class' => 'btn btn-primary']) !!}
+                        {!! link_to_action('Admin\ArticlesController@create', '新規作成') !!}
                     </div>
 
                     <table class="table table-striped table-bordered table-hover">
@@ -34,7 +34,7 @@
                                     {!! link_to_action('Admin\ArticlesController@edit', '編集', [$article->id]) !!}
                                     {!! Form::model($article,
                                     ['url' => [
-                                        'admin/articles', $article->id],
+                                        '/', $article->id],
                                         'method' => 'delete',
                                         'class' => 'delete-from'
                                     ]) !!}

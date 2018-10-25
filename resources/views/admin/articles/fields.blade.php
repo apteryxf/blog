@@ -13,6 +13,6 @@
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
         {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
-        {!! link_to('admin/articles', '一覧へ戻る', ['class' => 'btn btn-default']) !!}
+        {!! link_to('/', '一覧へ戻る', ['class' => 'btn btn-default']) !!}
     </div>
 </div>

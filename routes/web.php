@@ -11,12 +11,11 @@
 |                                                                            |
 */
 
-Route::get('/', 'ArticlesController@index')->name('index');
-
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+Route::get('/', 'ArticlesController@index');
+Route::get('/{id}', 'ArticlesController@show');
+
+Route::group(['middleware' => 'auth'], function() {
     Route::resource('articles', 'Admin\ArticlesController', ['except' => ['index', 'show']]);
 });
-
-Route::resource('articles', 'ArticlesController', ['only' => ['index', 'show']]);

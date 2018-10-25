@@ -25,7 +25,7 @@ class ArticlesController extends Controller
         $this->validate($request, $this->validateRules);
         Article::create($request->all());
         Session::flash('flash_message', '記事を作成しました。');
-        return redirect('admin/articles');
+        return redirect('/');
     }
 
     public function edit($id)
