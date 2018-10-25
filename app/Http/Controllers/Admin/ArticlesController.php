@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Article;
 use Session;
+use Bouncer;
 
 class ArticlesController extends Controller
 {
@@ -13,12 +14,6 @@ class ArticlesController extends Controller
         'title' => 'required',
         'body' => 'max:500'
     ];
-
-    public function index()
-    {
-        $articles = Article::orderBy('id', 'desc')->paginate(5);
-        return view('admin.articles.index', compact('articles'));
-    }
 
     public function create()
     {
@@ -31,12 +26,6 @@ class ArticlesController extends Controller
         Article::create($request->all());
         Session::flash('flash_message', '記事を作成しました。');
         return redirect('admin/articles');
-    }
-
-    public function show($id)
-    {
-        $article = Article::findOrFail($id);
-        return view('admin.articles.show', compact('article'));
     }
 
     public function edit($id)

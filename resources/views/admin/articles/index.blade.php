@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <div class="row">
@@ -27,20 +27,19 @@
                                 <td>{{ $article->title }}</td>
                                 <td>{{ $article->created_at->format('Y年m月d日') }}</td>
                                 <td>
-                                    {!! link_to_action('Admin\ArticlesController@show', '表示', [$article->id]) !!}
-                                    @if (Auth::check())
-                                    {!! link_to_action('Admin\ArticlesController@edit', '編集', [$article->id]) !!}
-                                    {!! Form::model($article,
-                                        ['url'    => ['admin/articles', $article->id],
-                                         'method' => 'delete',
-                                         'class'  => 'delete-from'
-                                        ]) !!}
-                                    {!! Form::submit('削除', [
-                                        'onclick' => "return confirm('本当に削除しますか?')",
-                                        'class' => 'text-link'
-                                        ]) !!}
-                                    @endif
-                                    {!! Form::close() !!}
+                                    {!! link_to_action('ArticlesController@show', '表示', [$article->id]) !!}
+                                    @auth
+                                        {!! link_to_action('Admin\ArticlesController@edit', '編集', [$article->id]) !!}
+                                        {!! Form::model($article,
+                                            ['url'    => ['admin/articles', $article->id],
+                                             'method' => 'delete',
+                                             'class'  => 'delete-from'
+                                            ]) !!}
+                                        {!! Form::submit('削除',
+                                                ['onclick' => "return confirm('本当に削除しますか?')", 'class' => 'text-link']
+                                            ) !!}
+                                        {!! Form::close() !!}
+                                    @endauth
                                 </td>
                             </tr>
                         @endforeach
