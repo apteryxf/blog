@@ -11,11 +11,11 @@
 |                                                                            |
 */
 
+Route::get('/', function () {
+    return view('auth.login');
+});
+
 Auth::routes();
-
-Route::get('/', 'ArticlesController@index');
-Route::get('/{id}', 'ArticlesController@show');
-
 Route::group(['middleware' => 'auth'], function() {
-    Route::resource('articles', 'Admin\ArticlesController', ['except' => ['index', 'show']]);
+    Route::resource('articles', 'ArticlesController');
 });

@@ -17,8 +17,8 @@
                             </ul>
                         </div>
                     @endif
-                    {!! Form::open(['action' => 'Admin\ArticlesController@store', 'class' => 'form-horizontal', 'id' => 'article-input']) !!}
-                    @include('admin.articles.fields')
+                    {!! Form::open(['action' => 'ArticlesController@store', 'class' => 'form-horizontal', 'id' => 'article-input']) !!}
+                    @include('articles.fields')
                     {!! Form::close() !!}
                 </div>
             </div>

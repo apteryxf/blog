@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        {!! link_to('/', '一覧へ戻る', ['class' => 'btn btn-default']) !!}
+                        {!! link_to('/articles', '一覧へ戻る', ['class' => 'btn btn-default']) !!}
                     </div>
                 </div>
             </div>

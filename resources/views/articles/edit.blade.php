@@ -16,13 +16,12 @@
                         </div>
                     @endif
                     {!! Form::model($article,
-                    ['url' => [
-                        '/', $article->id],
-                        'method' => 'PATCH',
-                        'class' => 'form-horizontal',
-                        'id' => 'article-input'
+                    ['action' => ['ArticlesController@update', $article->id],
+                     'method' => 'PATCH',
+                     'class'  => 'form-horizontal',
+                     'id'     => 'article-input'
                     ]) !!}
-                    @include('admin.articles.fields')
+                    @include('articles.fields')
                     {!! Form::close() !!}
                 </div>
             </div>
